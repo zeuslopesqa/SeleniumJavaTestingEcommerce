@@ -19,6 +19,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.RandomEmailGenerator;
 import utils.ScreenshotGenerator;
 import utils.TimeGenerator;
+import utils.WebNavigator;
+
 import static org.junit.Assert.*;
 import java.util.concurrent.TimeUnit;
 
@@ -27,19 +29,12 @@ import java.util.concurrent.TimeUnit;
 
 public class SignInTest {
     static WebDriver navigator;
+
     @Rule
     public TestName testName = new TestName();
     @Before
     public void setUp(){
-        //Starting chrome
-        System.setProperty("webdriver.chrome.driver","C:/Users/Zeus/Documents/Drivers navegadores/chromedriver_win32/chromedriver.exe");
-        navigator = new ChromeDriver();
-        //Setting a timeout to avoid erros
-        navigator.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        //getting the page of tests
-        navigator.get("http://automationpractice.com/index.php");
-        //Setting the windows to max size
-        navigator.manage().window().maximize();
+        navigator = WebNavigator.createChrome();
         //Search and click in a link SignIn
         navigator.findElement(By.linkText("Sign in")).click();
     }
@@ -222,7 +217,6 @@ public class SignInTest {
         String validateLoginFail = uncessLoginValidate.getText();
         assertEquals("An email address required.", validateLoginFail);
     }
-
 
     @Before
     public void tearDown(){

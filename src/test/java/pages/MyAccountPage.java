@@ -1,4 +1,9 @@
 package pages;
 
-public class MyAccountPage {
+import org.openqa.selenium.WebDriver;
+
+public class MyAccountPage extends BasePage{
+    public MyAccountPage(WebDriver navigator) {
+        super(navigator);
+    }
 }
